@@ -57,11 +57,11 @@ public class Solution
         }
 
         // Parsing the string to int
-        int invertNumsListInNode1Int = int.Parse(invertNumsListInNode1String);
-        int invertNumsListInNode2SInt = int.Parse(invertNumsListInNode2String);
+        long invertNumsListInNode1Int = long.Parse(invertNumsListInNode1String);
+        long invertNumsListInNode2SInt = long.Parse(invertNumsListInNode2String);
 
         // Getting the total
-        int total = invertNumsListInNode1Int + invertNumsListInNode2SInt;
+        long total = invertNumsListInNode1Int + invertNumsListInNode2SInt;
 
         // Reversing the total
         string totalString = total.ToString();
@@ -96,13 +96,6 @@ public class Solution
 
 
         return head;
-        //Création des nœuds de la liste chaînée avec les valeurs 1 -> 2 -> 3
-        // ListNode node3 = new ListNode(3);
-        // ListNode node2 = new ListNode(2, node3);
-        // ListNode node1 = new ListNode(1, node2);
-
-
-
 
     }
     public static void AfficherListe(ListNode head)
@@ -127,6 +120,21 @@ public class Solution
         Console.WriteLine();
         AfficherListe(s.AddTwoNumbers(l1, l2));
 
-        
+
+        ListNode l1_4 = new ListNode(9);
+        ListNode l2_4 = new ListNode(1,
+                      new ListNode(9,
+                      new ListNode(9,
+                      new ListNode(9,
+                      new ListNode(9,
+                      new ListNode(9,
+                      new ListNode(9,
+                      new ListNode(9,
+                      new ListNode(9,
+                      new ListNode(9))))))))));
+    
+
+        AfficherListe(s.AddTwoNumbers(l1_4, l2_4));
+
     }
 }
