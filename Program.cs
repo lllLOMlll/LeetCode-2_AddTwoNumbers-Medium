@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using System.Windows.Markup;
 
 public class Solution
 {
@@ -33,7 +34,7 @@ public class Solution
             current1 = current1.next;
         }
 
-        
+
         while (current2 != null)
         {
             numsListInNode2.Add(current2.val);
@@ -41,20 +42,20 @@ public class Solution
         }
 
         // Reverting the numbers
-        int lastIndexofnumsListNode1 =  numsListInNode1.Count -1; // Count - 1 = last index
+        int lastIndexofnumsListNode1 = numsListInNode1.Count - 1; // Count - 1 = last index
         for (int i = lastIndexofnumsListNode1; i > -1; i--)
         {
             invertNumsListInNode1.Add(numsListInNode1[i]);
             invertNumsListInNode1String += numsListInNode1[i];
         }
 
-         int lastIndexofnumsListNode2 =  numsListInNode2.Count -1; // Count - 1 = last index
+        int lastIndexofnumsListNode2 = numsListInNode2.Count - 1; // Count - 1 = last index
         for (int i = lastIndexofnumsListNode2; i > -1; i--)
         {
             invertNumsListInNode2.Add(numsListInNode2[i]);
             invertNumsListInNode2String += numsListInNode2[i];
         }
-        
+
         // Parsing the string to int
         int invertNumsListInNode1Int = int.Parse(invertNumsListInNode1String);
         int invertNumsListInNode2SInt = int.Parse(invertNumsListInNode2String);
@@ -72,16 +73,18 @@ public class Solution
 
         // Getting the final result into a list
         List<int> finalResult = new List<int>();
-        for (int i = 0; i < totalString.Length - 1; i++)
+        for (int i = 0; i < invertTotalString.Length; i++)
         {
-            finalResult.Add(invertTotalString[i]);
+            finalResult.Add(int.Parse(invertTotalString[i].ToString()));
         }
 
-        // Création des nœuds de la liste chaînée avec les valeurs 1 -> 2 -> 3
-        // ListNode node3 = new ListNode(3);
-        // ListNode node2 = new ListNode(2, node3);
-        // ListNode node1 = new ListNode(1, node2);
-
+        ListNode head = new ListNode(finalResult[0]);
+        ListNode current = head;
+        for (int i = 1; i < invertTotalString.Length; i++)
+        {
+            current.next = new ListNode(finalResult[i]);
+            current = current.next;
+        }
 
         Console.WriteLine(string.Join(", ", numsListInNode1));
         Console.WriteLine(string.Join(", ", invertNumsListInNode1));
@@ -89,8 +92,17 @@ public class Solution
         Console.WriteLine(invertNumsListInNode2String);
         Console.WriteLine(total);
         Console.WriteLine(invertTotalString);
-        Console.WriteLine(string.Join(",", finalResult));
-        return null;
+        Console.WriteLine(string.Join(", ", finalResult));
+
+
+        return head;
+        //Création des nœuds de la liste chaînée avec les valeurs 1 -> 2 -> 3
+        // ListNode node3 = new ListNode(3);
+        // ListNode node2 = new ListNode(2, node3);
+        // ListNode node1 = new ListNode(1, node2);
+
+
+
 
     }
     public static void AfficherListe(ListNode head)
@@ -104,7 +116,7 @@ public class Solution
         Console.WriteLine("null");
     }
 
-    static void Main(string[]args)
+    static void Main(string[] args)
     {
         Solution s = new Solution();
 
@@ -112,7 +124,9 @@ public class Solution
         ListNode l2 = new ListNode(5, new ListNode(6, new ListNode(4)));
 
         //AfficherListe(l1);
+        Console.WriteLine();
+        AfficherListe(s.AddTwoNumbers(l1, l2));
 
-        s.AddTwoNumbers(l1, l2);
+        
     }
 }
